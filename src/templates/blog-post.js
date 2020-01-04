@@ -47,7 +47,18 @@ class BlogPostTemplate extends React.Component {
             }}
           />
 
-          <TagsList tags={post.frontmatter.tags} />
+          <div style={{
+              marginBottom: rhythm(1),
+            }}>
+            <span>Tags:</span> <TagsList tags={post.frontmatter.tags} />
+          </div>
+
+          <hr
+            style={{
+              marginBottom: rhythm(1),
+            }}
+          />
+
 
           <footer>
             <Bio />

@@ -9,7 +9,7 @@ class Layout extends React.Component {
     const rootPath = `${__PATH_PREFIX__}/`
     let header
 
-    if (location.pathname === rootPath) {
+    if (location && location.pathname === rootPath) { 
       header = (
         <h1
           style={{
@@ -63,7 +63,9 @@ class Layout extends React.Component {
         <header>{header}</header>
         <main>{children}</main>
         <footer>
-          © {new Date().getFullYear()}
+          © {new Date().getFullYear()}.
+          Built with <a href="https://www.gatsbyjs.org">Gatsby</a>,
+          source on <a href="https://github.com/morocarlo/blog">GitHub</a>
         </footer>
       </div>
     )

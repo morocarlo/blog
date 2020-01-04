@@ -1,5 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import kebabCase from "lodash/kebabCase"
+import { Link } from "gatsby"
+
 
 export function TagsList({tags, ...otherProps}) {
   if (!tags || tags.length === 0) {
@@ -7,12 +10,10 @@ export function TagsList({tags, ...otherProps}) {
   }
 
   return (
-    <Ul {...otherProps}>
+    <Ul {...otherProps} style={{display: 'inline-block' }}>
       {tags.map(tag => (
         <Li key={tag}>
-          <span key={tag}>
-            {tag}
-          </span>
+          <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link> 
         </Li>
       ))}
     </Ul>

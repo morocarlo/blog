@@ -1,10 +1,14 @@
+const {kebabCase} = require('lodash/kebabCase')
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const _ = require("lodash")
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const tagTemplate = path.resolve("src/templates/tags.js")
+
   const result = await graphql(
     `
       {
@@ -34,10 +38,17 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Create blog posts pages.
   const posts = result.data.allMarkdownRemark.edges
+  let tags = []
 
   posts.forEach((post, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
     const next = index === 0 ? null : posts[index - 1].node
+
+    if (post.node.frontmatter.tags){
+      post.node.frontmatter.tags.forEach((tag, j) => {
+        tags.indexOf(tag) === -1 ? tags.push(tag) : null;
+      })
+    }
 
     createPage({
       path: post.node.fields.slug,
@@ -51,6 +62,17 @@ exports.createPages = async ({ graphql, actions }) => {
 
   })
 
+  // Make tag pages
+  tags.forEach(tag => {
+    createPage({
+      path: `/tags/${_.kebabCase(tag)}/`,
+      component: tagTemplate,
+      context: {
+        tag: tag,
+      },
+    })
+  })
+
 }
 
 
@@ -59,6 +81,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode })
+
     createNodeField({
       name: `slug`,
       node,
