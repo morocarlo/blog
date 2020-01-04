@@ -7,6 +7,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const blogList = path.resolve("./src/templates/blog-template.js");
   const tagTemplate = path.resolve("src/templates/tags.js")
 
   const result = await graphql(
@@ -39,6 +40,22 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Create blog posts pages.
   const posts = result.data.allMarkdownRemark.edges
+  const postsPerPage = 12
+  const numPages = Math.ceil(posts.length / postsPerPage)
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/blog` : `/blog/${i + 1}`,
+      component: blogList,
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
+    })
+  })
+
   let tags = []
 
   posts.forEach((post, index) => {
