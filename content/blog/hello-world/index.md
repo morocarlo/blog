@@ -2,6 +2,7 @@
 title: Hello World
 date: "2015-05-01T22:12:03.284Z"
 description: "Hello World"
+tags: ['gatsby', 'quick-tips']
 ---
 
 This is my first post on my new fake blog! How exciting!
@@ -29,4 +30,4 @@ console.log('asd');
 > salted duck eggs have a briny aroma, a gelatin-like egg white and a
 > firm-textured, round yolk that is bright orange-red in color.
 
-![Chinese Salty Egg](./salty_egg.jpg)
+![Chinese Salty Egg](./salty_egg.jpg/)
