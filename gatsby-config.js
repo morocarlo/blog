@@ -6,6 +6,7 @@ module.exports = {
     social: {
       twitter: ``,
     },
+    siteUrl: `https://www.gatsbyjs.org`,
   },
   plugins: [
     {
