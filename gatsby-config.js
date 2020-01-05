@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Dev Tips`,
     author: `Carlo Moretto`,
-    description: ``,
+    description: `Full stack web developer. He speaks Italian, but tries to blogg in English to improve himself.`,
     social: {
       twitter: ``,
     },
@@ -80,5 +80,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-  pathPrefix: "/blog",
 }

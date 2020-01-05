@@ -3,8 +3,8 @@ import { Redirect } from '@reach/router'
 
 
 class BlogIndex extends React.Component {
+  
   render() {
-
     return (
       <Redirect noThrow to="/blog" />
     )
@@ -12,3 +12,4 @@ class BlogIndex extends React.Component {
 }
 
 export default BlogIndex
+
